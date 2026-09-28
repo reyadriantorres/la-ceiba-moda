@@ -1,0 +1,147 @@
+<!DOCTYPE html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>La Ceiba · Moda</title><meta name="description" content="La Ceiba: ropa y calzado en Puentes Grandes. Pide por WhatsApp."><style>
+:root{--bg:#faf6ef;--ink:#2b2a26;--mut:#7a7466;--card:#fff;--line:#e6dfd2;--g:#3f5b45;--gt:#fff;--a:#b5654a;box-sizing:border-box}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#161915;--ink:#efeae0;--mut:#a39d8e;--card:#20241f;--line:#343a31;--g:#8fb096;--gt:#141712;--a:#e0906f}}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 15px/1.5 system-ui,-apple-system,Segoe UI,Roboto,sans-serif;-webkit-tap-highlight-color:transparent}
+h1,h2,h3,.logo{font-family:Georgia,'Times New Roman',serif;margin:0;font-weight:700}
+button{font:inherit;cursor:pointer;border:0}
+header{position:sticky;top:0;z-index:20;display:flex;justify-content:space-between;align-items:center;gap:8px;padding:10px 14px;background:var(--bg);border-bottom:1px solid var(--line)}
+.logo{font-size:24px;color:var(--g);line-height:1}
+.logo small{display:block;font:500 9px system-ui,sans-serif;letter-spacing:3px;color:var(--mut);text-transform:uppercase;margin-top:2px}
+.hb{display:flex;gap:6px;align-items:center}
+.cur{display:flex;border:1px solid var(--line);border-radius:99px;overflow:hidden}
+.cur button{background:var(--card);color:var(--mut);padding:8px 11px;font-size:13px;font-weight:600}
+.cur button.on{background:var(--g);color:var(--gt)}
+.ib{background:var(--card);border:1px solid var(--line);color:var(--ink);border-radius:99px;padding:8px 13px;font-weight:600;font-size:14px}
+.ib b{background:var(--a);color:#fff;border-radius:99px;font-size:11px;padding:1px 7px;margin-left:4px}
+.hero{padding:38px 20px 30px;text-align:center;background:linear-gradient(180deg,color-mix(in srgb,var(--g) 14%,var(--bg)),var(--bg))}
+.hero h1{font-size:clamp(44px,12vw,78px);color:var(--g);line-height:1}
+.hero p{color:var(--mut);max-width:420px;margin:10px auto 0}
+main{max-width:1040px;margin:0 auto;padding:6px 14px 30px}
+.tools{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0 10px}
+.tools input[type=search]{flex:1 1 200px}
+.tools select{flex:0 0 auto}
+input,textarea,select{width:100%;background:var(--card);color:var(--ink);border:1px solid var(--line);border-radius:10px;padding:11px;font:inherit}
+.tools select{width:auto}
+.chk{display:flex;align-items:center;gap:6px;font-size:13px;color:var(--mut)}
+.chk input{width:auto}
+#cats{display:flex;gap:10px;overflow-x:auto;padding:6px 2px 12px;scrollbar-width:none}
+.cat{flex:0 0 auto;width:74px;text-align:center;background:none;color:var(--ink);font-size:12px;font-weight:500}
+.cat i{display:grid;place-items:center;width:58px;height:58px;margin:0 auto 4px;border-radius:50%;background:var(--card);border:2px solid var(--line);font-style:normal;font-size:28px}
+.cat.on i{border-color:var(--g);background:color-mix(in srgb,var(--g) 16%,var(--card))}
+.cat.on{color:var(--g);font-weight:700}
+#grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+@media(min-width:720px){#grid{grid-template-columns:repeat(3,1fr);gap:20px}}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden;display:flex;flex-direction:column}
+.im{aspect-ratio:3/4;background:var(--line);position:relative}
+.im img{width:100%;height:100%;object-fit:cover;display:block}
+.sold{position:absolute;right:8px;bottom:8px;background:#000a;color:#fff;font-size:11px;padding:3px 10px;border-radius:99px}
+.in{padding:11px 12px 13px;display:flex;flex-direction:column;gap:3px;flex:1}
+.card h3{font-size:18px;line-height:1.15}
+.d{color:var(--mut);font-size:12.5px}
+.pr{color:var(--a);font-weight:700;margin-top:2px}
+.act{display:flex;gap:6px;margin-top:auto;padding-top:9px}
+.act button{flex:1;padding:10px 6px;border-radius:10px;font-weight:600;font-size:13px}
+.add{background:var(--g);color:var(--gt)}.add:disabled{opacity:.4}
+.ask{background:transparent;color:var(--g);border:1.5px solid var(--g)!important;flex:0 0 auto!important;padding:10px 12px!important}
+.empty{grid-column:1/-1;text-align:center;color:var(--mut);padding:40px 10px}
+.info{max-width:1040px;margin:0 auto;padding:10px 14px 34px;display:grid;gap:12px;grid-template-columns:1fr}
+@media(min-width:720px){.info{grid-template-columns:1fr 1fr}}
+.box{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px 18px 20px;text-align:center}
+.box .e{font-size:30px}
+.box h3{font-size:22px;color:var(--g);margin:4px 0 6px}
+.box p{margin:0;color:var(--mut)}.box p b{color:var(--ink)}
+footer{text-align:center;color:var(--mut);padding:26px 18px 40px;border-top:1px solid var(--line);font-size:13px}
+footer .logo{font-size:22px;margin-bottom:4px}
+.sh{position:fixed;inset:0;z-index:40;background:#0007;display:none;align-items:flex-end;justify-content:center}
+.sh.open{display:flex}
+.pan{background:var(--bg);width:100%;max-width:520px;max-height:90%;overflow:auto;border-radius:20px 20px 0 0;padding:20px 18px 26px}
+.cart-panel{max-width:430px;margin-left:auto;margin-right:0;border-radius:22px 0 0 22px;box-shadow:-10px 0 30px #0003}
+@media(max-width:600px){.cart-panel{max-width:none;border-radius:22px 22px 0 0;margin:0}}
+.pan h2{font-size:26px;margin-bottom:8px;display:flex;justify-content:space-between;align-items:center}
+.x{background:none;color:var(--mut);font-size:26px;line-height:1}
+.row{display:flex;gap:10px;align-items:center;padding:10px 0;border-bottom:1px solid var(--line)}
+.row img{width:52px;height:64px;object-fit:cover;border-radius:8px}
+.row .n{flex:1;min-width:0}.row .n b{display:block;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.row .sub{display:block;color:var(--mut);font-size:12px}
+.discount{font-size:12px;color:#c64b3d;font-weight:700}.oldprice{text-decoration:line-through;color:var(--mut);font-size:12px;margin-right:5px}
+.stock{font-size:11px;color:var(--mut);margin-top:2px}
+.q{display:flex;align-items:center;gap:8px}
+.q button{width:30px;height:30px;border-radius:50%;background:var(--card);border:1px solid var(--line);color:var(--ink);font-weight:700}.q strong{min-width:18px;text-align:center}
+.tot{display:flex;justify-content:space-between;font-size:18px;font-weight:700;padding:14px 0}
+.wa{display:block;width:100%;text-align:center;background:#1fa855;color:#fff;border-radius:12px;padding:14px;font-weight:600;margin-top:8px;text-decoration:none}
+.wa.s{background:transparent;color:#1fa855;border:1.5px solid #1fa855}
+.wa.g{background:var(--g);color:var(--gt)}
+label{display:block;font-size:13px;color:var(--mut);margin:12px 0 4px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.emo{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0}
+.emo button{font-size:22px;background:var(--card);border:2px solid var(--line);border-radius:10px;padding:4px 8px}
+.emo button.on{border-color:var(--g)}
+.tm{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:var(--g);color:var(--gt);padding:10px 20px;border-radius:99px;z-index:60;font-weight:500;opacity:0;pointer-events:none;transition:opacity .25s}
+.tm.on{opacity:1}
+.hide{display:none!important}
+.mini{font-size:12px;padding:6px 10px;border-radius:8px;background:var(--card);border:1px solid var(--line);color:var(--ink)}
+.note{font-size:12px;color:var(--mut);margin:6px 0 0}
+</style></head><body>
+<header><div class="logo">La Ceiba<small>Moda</small></div><div class="hb"><div class="cur"><button data-cur="CUP">CUP</button><button data-cur="USD">USD</button></div><button class="ib" id="cartBtn">🛍<b id="cnt">0</b></button></div></header>
+<section class="hero"><h1>La Ceiba</h1><p>Ropa y calzado con estilo, elegidos con cariño. Escoge y pide directo por WhatsApp.</p></section>
+<main><div class="tools"><input type="search" id="q" placeholder="🔍 Buscar prenda…"><select id="sort"><option value="">Ordenar</option><option value="asc">Precio: menor a mayor</option><option value="desc">Precio: mayor a menor</option></select><label class="chk"><input type="checkbox" id="avail"> Solo disponibles</label></div><div id="cats"></div><div id="grid"></div></main>
+<section class="info"><div class="box"><div class="e">📍</div><h3>Dónde estamos</h3><p><b>Calle 57 # 5004</b><br>e/ 50 y 56, La Ceiba<br>Puentes Grandes</p></div><div class="box"><div class="e">🛵</div><h3>Mensajería</h3><p>Entregas <b>después de las 5 pm</b>.<br>Si la necesitas antes, pregúntanos por WhatsApp para ver si hay disponibilidad.</p></div></section>
+<footer><div class="logo">La Ceiba</div><div>Pedidos y consultas por WhatsApp · Puentes Grandes</div></footer>
+<div class="sh" id="cartSh"><div class="pan cart-panel"><h2>Tu carrito <button class="x" data-close>×</button></h2><button id="clearCart" class="mini" style="width:100%;margin:0 0 12px;display:none">🗑 Vaciar carrito</button><div id="cartItems"></div><div class="tot"><span>Total</span><span id="total"></span></div><div class="note" style="text-align:center">El pedido se abrirá en WhatsApp para ambos números.</div><a class="wa" id="waMom" href="#" target="_blank" rel="noopener">Pedir por WhatsApp</a><a class="wa s" id="waMe" href="#" target="_blank" rel="noopener">Pedir también al otro número</a></div></div>
+<div class="tm" id="tm"></div><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+const SUPABASE_URL='https://pxfkmoushfjcntcizoka.supabase.co';
+const SUPABASE_KEY='sb_publishable_qK0P3fPuMix7Z4RoiwLhuw_twwKSyxN';
+const sb=supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
+const MOM='5353587902', ME='5353700812';
+const EMO=['👗','👚','👕','👖','🩳','🧥','👠','👟','🥿','👜','🧢','👙','🧦','👔','🎒','👶'];
+const $=s=>document.querySelector(s), esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const money=(n,c)=>new Intl.NumberFormat('es-CU',{maximumFractionDigits:2}).format(n)+' '+c;
+const wa=(n,t)=>'https://wa.me/'+n+'?text='+encodeURIComponent(t);
+let cats=[], products=[], rate=400, cur=localStorage.getItem('lc_cur')||'CUP', catSel='all', cart={};
+try{cart=JSON.parse(localStorage.getItem('lc_cart')||'{}')}catch(e){cart={}}
+const P=id=>products.find(p=>p.id===id);
+const effective=p=>Number(p.price||0)*(1-Number(p.discount||0)/100);
+const price=p=>money(effective(p),p.cur===cur?cur:(p.cur==='USD'?'USD':'CUP'));
+const converted=p=>{if(p.cur===cur)return effective(p);return cur==='CUP'?effective(p)*rate:effective(p)/rate};
+function toast(m){const t=$('#tm');t.textContent=m;t.classList.add('on');setTimeout(()=>t.classList.remove('on'),1800)}
+function renderCats(){ $('#cats').innerHTML=[{id:'all',name:'Todo',ico:'✨'},...cats].map(c=>`<button class="cat ${catSel===c.id?'on':''}" data-cat="${c.id}"><i>${c.ico}</i>${esc(c.name)}</button>`).join('') }
+function renderGrid(){
+ const q=$('#q').value.trim().toLowerCase(), so=$('#sort').value, av=$('#avail').checked;
+ let l=products.filter(p=>(catSel==='all'||p.category_id===catSel)&&(!av||(!p.sold&&p.quantity>0))&&(!q||(p.name+' '+(p.description||'')).toLowerCase().includes(q)));
+ if(so)l=l.slice().sort((a,b)=>so==='asc'?converted(a)-converted(b):converted(b)-converted(a));
+ $('#grid').innerHTML=l.length?l.map(p=>{const q=Math.max(0,Number(p.quantity||0)), c=Number(p.discount||0), disabled=p.sold||q<1||((cart[p.id]||0)>=q);return `<div class="card"><div class="im"><img src="${p.image_url}" alt="${esc(p.name)}" loading="lazy">${p.sold||q<1?'<span class="sold">Agotado</span>':''}</div><div class="in"><h3>${esc(p.name)}</h3><div class="d">${esc(p.description||'')}</div><div class="pr">${c?`<span class="oldprice">${money(p.price,p.cur)}</span>`:''}${money(effective(p),p.cur)} ${c?`<span class="discount">-${c}%</span>`:''}</div><div class="stock">${p.sold||q<1?'Agotado':q===1?'1 disponible':q+' disponibles'}</div><div class="act"><button class="add" data-add="${p.id}" ${disabled?'disabled':''}>${disabled?'No disponible':'Añadir'}</button><button class="ask" data-ask="${p.id}">WhatsApp</button></div></div></div>`}).join(''):'<div class="empty">No encontramos prendas con esos filtros.</div>';
+}
+function renderCart(){
+ const l=Object.entries(cart).map(([id,q])=>[P(id),q]).filter(([p])=>p), n=l.reduce((a,[,q])=>a+q,0), tot=l.reduce((a,[p,q])=>a+converted(p)*q,0);
+ $('#cnt').textContent=n; $('#clearCart').style.display=l.length?'block':'none';
+ $('#cartItems').innerHTML=l.length?l.map(([p,q])=>`<div class="row"><img src="${p.image_url}" alt=""><div class="n"><b>${esc(p.name)}</b><span class="sub">${q} × ${money(effective(p),p.cur)}${p.discount>0?` · -${p.discount}%`:''}</span></div><div class="q"><button data-dec="${p.id}">−</button><strong>${q}</strong><button data-inc="${p.id}" ${q>=p.quantity?'disabled':''}>+</button></div></div>`).join(''):'<p class="note">Tu carrito está vacío.</p>';
+ $('#total').textContent=money(tot,cur);
+ const msg='¡Hola, La Ceiba!\n\nMe interesa esta ropa:\n'+l.map(([p,q])=>`• ${q} x ${p.name} – ${money(converted(p)*q,cur)}`).join('\n')+'\n\nTotal: '+money(tot,cur)+'\n¿Está disponible?';
+ $('#waMom').href=wa(MOM,msg);$('#waMe').href=wa(ME,msg);['#waMom','#waMe'].forEach(x=>$(x).classList.toggle('hide',!l.length));
+ localStorage.setItem('lc_cart',JSON.stringify(cart));
+}
+async function loadStore(){
+ const [c,p,s]=await Promise.all([sb.from('categories').select('*').order('name'),sb.from('products').select('*').eq('published',true).order('created_at',{ascending:false}),sb.from('settings').select('*').eq('id',1).maybeSingle()]);
+ if(c.error||p.error||s.error){console.error(c.error,p.error,s.error);toast('No se pudo conectar con la tienda');return}
+ cats=c.data||[];products=p.data||[];rate=Number(s.data?.usd_to_cup||400);renderAll();
+}
+function renderAll(){document.querySelectorAll('[data-cur]').forEach(b=>b.classList.toggle('on',b.dataset.cur===cur));renderCats();renderGrid();renderCart()}
+const open=id=>$(id).classList.add('open');
+document.addEventListener('click',e=>{const t=e.target,id=t.closest('[data-add]')?.dataset.add||t.closest('[data-inc]')?.dataset.inc||t.closest('[data-dec]')?.dataset.dec||t.closest('[data-ask]')?.dataset.ask||t.closest('[data-cat]')?.dataset.cat||t.closest('[data-cur]')?.dataset.cur;
+ if(t.closest('[data-close]')||t.classList.contains('sh'))document.querySelectorAll('.sh').forEach(s=>s.classList.remove('open'));
+ if(t.closest('#cartBtn')){renderCart();open('#cartSh')}
+ if(t.closest('#clearCart')){cart={};renderCart();renderGrid();toast('Carrito vaciado')}
+ if(t.closest('[data-cur]')){cur=id;localStorage.setItem('lc_cur',cur);renderAll()}
+ if(t.closest('[data-cat]')){catSel=id;renderCats();renderGrid()}
+ if(t.closest('[data-add]')){const p=P(id);if(p&&((cart[id]||0)<p.quantity)&&!p.sold){cart[id]=(cart[id]||0)+1;renderCart();renderGrid();toast('Añadido al carrito')}}
+ if(t.closest('[data-inc]')){const p=P(id);if(p&&(cart[id]||0)<p.quantity){cart[id]++;renderCart();renderGrid()}}
+ if(t.closest('[data-dec]')){cart[id]--;if(cart[id]<=0)delete cart[id];renderCart();renderGrid()}
+ if(t.closest('[data-ask]')){const p=P(id);if(p)window.open(wa(MOM,`¡Hola, La Ceiba! Quisiera preguntar por: ${p.name} (${money(effective(p),p.cur)}).`),'_blank')}
+});
+$('#q').oninput=renderGrid;$('#sort').onchange=renderGrid;$('#avail').onchange=renderGrid;
+// Actualización en tiempo real: la tienda cambia sin tener que volver a subir index.html.
+sb.channel('store-live').on('postgres_changes',{event:'*',schema:'public',table:'products'},loadStore).on('postgres_changes',{event:'*',schema:'public',table:'categories'},loadStore).on('postgres_changes',{event:'*',schema:'public',table:'settings'},loadStore).subscribe();
+loadStore();
+</script></body></html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Administración · La Ceiba</title><style>
+:root{--bg:#faf6ef;--ink:#2b2a26;--mut:#7a7466;--card:#fff;--line:#e6dfd2;--g:#3f5b45;--gt:#fff;--a:#b5654a;box-sizing:border-box}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#161915;--ink:#efeae0;--mut:#a39d8e;--card:#20241f;--line:#343a31;--g:#8fb096;--gt:#141712;--a:#e0906f}}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 15px/1.5 system-ui,-apple-system,Segoe UI,Roboto,sans-serif;-webkit-tap-highlight-color:transparent}
+h1,h2,h3,.logo{font-family:Georgia,'Times New Roman',serif;margin:0;font-weight:700}
+button{font:inherit;cursor:pointer;border:0}
+header{position:sticky;top:0;z-index:20;display:flex;justify-content:space-between;align-items:center;gap:8px;padding:10px 14px;background:var(--bg);border-bottom:1px solid var(--line)}
+.logo{font-size:24px;color:var(--g);line-height:1}
+.logo small{display:block;font:500 9px system-ui,sans-serif;letter-spacing:3px;color:var(--mut);text-transform:uppercase;margin-top:2px}
+.hb{display:flex;gap:6px;align-items:center}
+.cur{display:flex;border:1px solid var(--line);border-radius:99px;overflow:hidden}
+.cur button{background:var(--card);color:var(--mut);padding:8px 11px;font-size:13px;font-weight:600}
+.cur button.on{background:var(--g);color:var(--gt)}
+.ib{background:var(--card);border:1px solid var(--line);color:var(--ink);border-radius:99px;padding:8px 13px;font-weight:600;font-size:14px}
+.ib b{background:var(--a);color:#fff;border-radius:99px;font-size:11px;padding:1px 7px;margin-left:4px}
+.hero{padding:38px 20px 30px;text-align:center;background:linear-gradient(180deg,color-mix(in srgb,var(--g) 14%,var(--bg)),var(--bg))}
+.hero h1{font-size:clamp(44px,12vw,78px);color:var(--g);line-height:1}
+.hero p{color:var(--mut);max-width:420px;margin:10px auto 0}
+main{max-width:1040px;margin:0 auto;padding:6px 14px 30px}
+.tools{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0 10px}
+.tools input[type=search]{flex:1 1 200px}
+.tools select{flex:0 0 auto}
+input,textarea,select{width:100%;background:var(--card);color:var(--ink);border:1px solid var(--line);border-radius:10px;padding:11px;font:inherit}
+.tools select{width:auto}
+.chk{display:flex;align-items:center;gap:6px;font-size:13px;color:var(--mut)}
+.chk input{width:auto}
+#cats{display:flex;gap:10px;overflow-x:auto;padding:6px 2px 12px;scrollbar-width:none}
+.cat{flex:0 0 auto;width:74px;text-align:center;background:none;color:var(--ink);font-size:12px;font-weight:500}
+.cat i{display:grid;place-items:center;width:58px;height:58px;margin:0 auto 4px;border-radius:50%;background:var(--card);border:2px solid var(--line);font-style:normal;font-size:28px}
+.cat.on i{border-color:var(--g);background:color-mix(in srgb,var(--g) 16%,var(--card))}
+.cat.on{color:var(--g);font-weight:700}
+#grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+@media(min-width:720px){#grid{grid-template-columns:repeat(3,1fr);gap:20px}}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden;display:flex;flex-direction:column}
+.im{aspect-ratio:3/4;background:var(--line);position:relative}
+.im img{width:100%;height:100%;object-fit:cover;display:block}
+.sold{position:absolute;right:8px;bottom:8px;background:#000a;color:#fff;font-size:11px;padding:3px 10px;border-radius:99px}
+.in{padding:11px 12px 13px;display:flex;flex-direction:column;gap:3px;flex:1}
+.card h3{font-size:18px;line-height:1.15}
+.d{color:var(--mut);font-size:12.5px}
+.pr{color:var(--a);font-weight:700;margin-top:2px}
+.act{display:flex;gap:6px;margin-top:auto;padding-top:9px}
+.act button{flex:1;padding:10px 6px;border-radius:10px;font-weight:600;font-size:13px}
+.add{background:var(--g);color:var(--gt)}.add:disabled{opacity:.4}
+.ask{background:transparent;color:var(--g);border:1.5px solid var(--g)!important;flex:0 0 auto!important;padding:10px 12px!important}
+.empty{grid-column:1/-1;text-align:center;color:var(--mut);padding:40px 10px}
+.info{max-width:1040px;margin:0 auto;padding:10px 14px 34px;display:grid;gap:12px;grid-template-columns:1fr}
+@media(min-width:720px){.info{grid-template-columns:1fr 1fr}}
+.box{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px 18px 20px;text-align:center}
+.box .e{font-size:30px}
+.box h3{font-size:22px;color:var(--g);margin:4px 0 6px}
+.box p{margin:0;color:var(--mut)}.box p b{color:var(--ink)}
+footer{text-align:center;color:var(--mut);padding:26px 18px 40px;border-top:1px solid var(--line);font-size:13px}
+footer .logo{font-size:22px;margin-bottom:4px}
+.sh{position:fixed;inset:0;z-index:40;background:#0007;display:none;align-items:flex-end;justify-content:center}
+.sh.open{display:flex}
+.pan{background:var(--bg);width:100%;max-width:520px;max-height:90%;overflow:auto;border-radius:20px 20px 0 0;padding:20px 18px 26px}
+.cart-panel{max-width:430px;margin-left:auto;margin-right:0;border-radius:22px 0 0 22px;box-shadow:-10px 0 30px #0003}
+@media(max-width:600px){.cart-panel{max-width:none;border-radius:22px 22px 0 0;margin:0}}
+.pan h2{font-size:26px;margin-bottom:8px;display:flex;justify-content:space-between;align-items:center}
+.x{background:none;color:var(--mut);font-size:26px;line-height:1}
+.row{display:flex;gap:10px;align-items:center;padding:10px 0;border-bottom:1px solid var(--line)}
+.row img{width:52px;height:64px;object-fit:cover;border-radius:8px}
+.row .n{flex:1;min-width:0}.row .n b{display:block;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.row .sub{display:block;color:var(--mut);font-size:12px}
+.discount{font-size:12px;color:#c64b3d;font-weight:700}.oldprice{text-decoration:line-through;color:var(--mut);font-size:12px;margin-right:5px}
+.stock{font-size:11px;color:var(--mut);margin-top:2px}
+.q{display:flex;align-items:center;gap:8px}
+.q button{width:30px;height:30px;border-radius:50%;background:var(--card);border:1px solid var(--line);color:var(--ink);font-weight:700}.q strong{min-width:18px;text-align:center}
+.tot{display:flex;justify-content:space-between;font-size:18px;font-weight:700;padding:14px 0}
+.wa{display:block;width:100%;text-align:center;background:#1fa855;color:#fff;border-radius:12px;padding:14px;font-weight:600;margin-top:8px;text-decoration:none}
+.wa.s{background:transparent;color:#1fa855;border:1.5px solid #1fa855}
+.wa.g{background:var(--g);color:var(--gt)}
+label{display:block;font-size:13px;color:var(--mut);margin:12px 0 4px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.emo{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0}
+.emo button{font-size:22px;background:var(--card);border:2px solid var(--line);border-radius:10px;padding:4px 8px}
+.emo button.on{border-color:var(--g)}
+.tm{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:var(--g);color:var(--gt);padding:10px 20px;border-radius:99px;z-index:60;font-weight:500;opacity:0;pointer-events:none;transition:opacity .25s}
+.tm.on{opacity:1}
+.hide{display:none!important}
+.mini{font-size:12px;padding:6px 10px;border-radius:8px;background:var(--card);border:1px solid var(--line);color:var(--ink)}
+.note{font-size:12px;color:var(--mut);margin:6px 0 0}
+
+.wrap{max-width:900px;margin:auto;padding:20px}.wrap header{position:static;margin:-20px -20px 20px}.box{margin-bottom:14px}.login{max-width:420px;margin:12vh auto}.login h1{color:var(--g);margin-bottom:4px}</style></head><body><div class="wrap"><div id="login" class="box login"><h1>La Ceiba · Administración</h1><p class="note">Acceso privado</p><form id="loginForm"><label>Correo</label><input id="email" type="email" required><label>Contraseña</label><input id="password" type="password" required><button class="wa g" type="submit">Entrar</button></form><p id="msg" class="note"></p></div><div id="app" class="hide"><header><div class="logo">La Ceiba<small>Administración</small></div><button class="mini" id="logout">Cerrar sesión</button></header><div class="box"><h2>Nueva prenda</h2><label>Foto</label><input id="photo" type="file" accept="image/*"><label>Nombre</label><input id="name"><div class="two"><div><label>Precio</label><input id="price" type="number" min="0"></div><div><label>Moneda</label><select id="cur"><option>CUP</option><option>USD</option></select></div></div><label>Categoría</label><select id="fCat"></select><label>Descripción</label><textarea id="desc" rows="2"></textarea><div class="two"><div><label>Cantidad disponible</label><input id="qty" type="number" min="1" value="1"></div><div><label>Oferta %</label><input id="disc" type="number" min="0" max="100" value="0"></div></div><button id="add" class="wa g">Publicar producto</button></div><div class="box"><h2>Categoría</h2><div class="two"><input id="catName" placeholder="Nombre"><input id="ico" placeholder="👗" value="👗"></div><button id="catAdd" class="wa g">Añadir categoría</button></div><div class="box"><h2>Tasa de cambio</h2><label>1 USD = CUP</label><div class="two"><input id="rate" type="number"><button id="rateBtn" class="wa g" style="margin:0">Guardar</button></div></div><div class="box"><h2>Productos</h2><div id="list"></div></div><p id="msg" class="note"></p></div></div><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script>
+const SUPABASE_URL='https://pxfkmoushfjcntcizoka.supabase.co', SUPABASE_KEY='sb_publishable_qK0P3fPuMix7Z4RoiwLhuw_twwKSyxN', ADMIN_EMAIL='reyadriantorres@gmail.com';
+const sb=supabase.createClient(SUPABASE_URL,SUPABASE_KEY);const $=s=>document.querySelector(s),esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+let cats=[];
+function msg(t){$('#msg').textContent=t;setTimeout(()=>$('#msg').textContent='',2500)}
+async function session(){const {data}=await sb.auth.getSession();if(!data.session){$('#login').classList.remove('hide');$('#app').classList.add('hide');return}if(data.session.user.email!==ADMIN_EMAIL){await sb.auth.signOut();msg('Esta cuenta no es administradora');return}$('#login').classList.add('hide');$('#app').classList.remove('hide');load()}
+async function load(){const [c,p,s]=await Promise.all([sb.from('categories').select('*').order('name'),sb.from('products').select('*').order('created_at',{ascending:false}),sb.from('settings').select('*').eq('id',1).single()]);if(c.error||p.error||s.error){msg('Error cargando datos');console.error(c.error,p.error,s.error);return}cats=c.data||[];$('#fCat').innerHTML=cats.map(x=>`<option value="${x.id}">${x.ico} ${esc(x.name)}</option>`).join('');$('#rate').value=s.data.usd_to_cup;$('#list').innerHTML=p.data.map(x=>`<div class="row"><img src="${x.image_url}"><div class="n"><b>${esc(x.name)}</b><span class="sub">${x.price} ${x.currency} · ${x.discount||0}% · ${x.quantity} uds.</span></div><button class="mini" data-toggle="${x.id}">${x.published?'Publicado':'Oculto'}</button><button class="mini" data-del="${x.id}">🗑</button></div>`).join('')||'<p class="note">No hay productos.</p>'}
+async function imageData(file){return new Promise((res,rej)=>{const r=new FileReader();r.onload=()=>{const im=new Image();im.onload=()=>{const max=1000,scale=Math.min(1,max/im.width,max/im.height),c=document.createElement('canvas');c.width=Math.round(im.width*scale);c.height=Math.round(im.height*scale);c.getContext('2d').drawImage(im,0,0,c.width,c.height);res(c.toDataURL('image/jpeg',.78))};im.onerror=rej;im.src=r.result};r.onerror=rej;r.readAsDataURL(file)})}
+$('#loginForm').onsubmit=async e=>{e.preventDefault();const {error}=await sb.auth.signInWithPassword({email:$('#email').value.trim(),password:$('#password').value});if(error)msg('Correo o contraseña incorrectos');else session()};
+$('#logout').onclick=async()=>{await sb.auth.signOut();session()};
+$('#add').onclick=async()=>{const f=$('#photo').files[0],name=$('#name').value.trim(),price=Number($('#price').value),qty=Math.max(1,parseInt($('#qty').value||'1')),discount=Math.min(100,Math.max(0,Number($('#disc').value||0)));if(!f||!name||!price)return msg('Falta foto, nombre o precio');msg('Subiendo…');const image_url=await imageData(f);const {error}=await sb.from('products').insert({name,price,currency:$('#cur').value,category_id:$('#fCat').value,description:$('#desc').value.trim(),quantity:qty,discount,published:true,sold:false,image_url});if(error){console.error(error);return msg('No se pudo guardar')};['photo','name','price','desc'].forEach(i=>$('#'+i).value='');load();msg('Producto publicado')};
+$('#rateBtn').onclick=async()=>{const v=Number($('#rate').value);const {error}=await sb.from('settings').update({usd_to_cup:v}).eq('id',1);msg(error?'No se pudo guardar':'Tasa actualizada')};
+$('#catAdd').onclick=async()=>{const n=$('#catName').value.trim();if(!n)return;const {error}=await sb.from('categories').insert({name:n,ico:$('#ico').value||'👗'});msg(error?'No se pudo crear':'Categoría creada');$('#catName').value='';load()};
+document.addEventListener('click',async e=>{const id=e.target.closest('[data-del]')?.dataset.del||e.target.closest('[data-toggle]')?.dataset.toggle;if(!id)return;if(e.target.closest('[data-del]')){if(confirm('¿Eliminar este producto?')){await sb.from('products').delete().eq('id',id);load()}}else{const {data}=await sb.from('products').select('published').eq('id',id).single();await sb.from('products').update({published:!data.published}).eq('id',id);load()}});
+session();
+</script></body></html>
