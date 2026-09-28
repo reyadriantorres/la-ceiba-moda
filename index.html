@@ -103,20 +103,20 @@ let cats=[], products=[], rate=400, cur=localStorage.getItem('lc_cur')||'CUP', c
 try{cart=JSON.parse(localStorage.getItem('lc_cart')||'{}')}catch(e){cart={}}
 const P=id=>products.find(p=>p.id===id);
 const effective=p=>Number(p.price||0)*(1-Number(p.discount||0)/100);
-const price=p=>money(effective(p),p.cur===cur?cur:(p.cur==='USD'?'USD':'CUP'));
-const converted=p=>{if(p.cur===cur)return effective(p);return cur==='CUP'?effective(p)*rate:effective(p)/rate};
+const price=p=>money(effective(p),p.currency===cur?cur:(p.currency==='USD'?'USD':'CUP'));
+const converted=p=>{if(p.currency===cur)return effective(p);return cur==='CUP'?effective(p)*rate:effective(p)/rate};
 function toast(m){const t=$('#tm');t.textContent=m;t.classList.add('on');setTimeout(()=>t.classList.remove('on'),1800)}
 function renderCats(){ $('#cats').innerHTML=[{id:'all',name:'Todo',ico:'✨'},...cats].map(c=>`<button class="cat ${catSel===c.id?'on':''}" data-cat="${c.id}"><i>${c.ico}</i>${esc(c.name)}</button>`).join('') }
 function renderGrid(){
  const q=$('#q').value.trim().toLowerCase(), so=$('#sort').value, av=$('#avail').checked;
  let l=products.filter(p=>(catSel==='all'||p.category_id===catSel)&&(!av||(!p.sold&&p.quantity>0))&&(!q||(p.name+' '+(p.description||'')).toLowerCase().includes(q)));
  if(so)l=l.slice().sort((a,b)=>so==='asc'?converted(a)-converted(b):converted(b)-converted(a));
- $('#grid').innerHTML=l.length?l.map(p=>{const q=Math.max(0,Number(p.quantity||0)), c=Number(p.discount||0), disabled=p.sold||q<1||((cart[p.id]||0)>=q);return `<div class="card"><div class="im"><img src="${p.image_url}" alt="${esc(p.name)}" loading="lazy">${p.sold||q<1?'<span class="sold">Agotado</span>':''}</div><div class="in"><h3>${esc(p.name)}</h3><div class="d">${esc(p.description||'')}</div><div class="pr">${c?`<span class="oldprice">${money(p.price,p.cur)}</span>`:''}${money(effective(p),p.cur)} ${c?`<span class="discount">-${c}%</span>`:''}</div><div class="stock">${p.sold||q<1?'Agotado':q===1?'1 disponible':q+' disponibles'}</div><div class="act"><button class="add" data-add="${p.id}" ${disabled?'disabled':''}>${disabled?'No disponible':'Añadir'}</button><button class="ask" data-ask="${p.id}">WhatsApp</button></div></div></div>`}).join(''):'<div class="empty">No encontramos prendas con esos filtros.</div>';
+ $('#grid').innerHTML=l.length?l.map(p=>{const q=Math.max(0,Number(p.quantity||0)), c=Number(p.discount||0), disabled=p.sold||q<1||((cart[p.id]||0)>=q);return `<div class="card"><div class="im"><img src="${p.image_url}" alt="${esc(p.name)}" loading="lazy">${p.sold||q<1?'<span class="sold">Agotado</span>':''}</div><div class="in"><h3>${esc(p.name)}</h3><div class="d">${esc(p.description||'')}</div><div class="pr">${c?`<span class="oldprice">${money(p.price,p.currency)}</span>`:''}${money(effective(p),p.currency)} ${c?`<span class="discount">-${c}%</span>`:''}</div><div class="stock">${p.sold||q<1?'Agotado':q===1?'1 disponible':q+' disponibles'}</div><div class="act"><button class="add" data-add="${p.id}" ${disabled?'disabled':''}>${disabled?'No disponible':'Añadir'}</button><button class="ask" data-ask="${p.id}">WhatsApp</button></div></div></div>`}).join(''):'<div class="empty">No encontramos prendas con esos filtros.</div>';
 }
 function renderCart(){
  const l=Object.entries(cart).map(([id,q])=>[P(id),q]).filter(([p])=>p), n=l.reduce((a,[,q])=>a+q,0), tot=l.reduce((a,[p,q])=>a+converted(p)*q,0);
  $('#cnt').textContent=n; $('#clearCart').style.display=l.length?'block':'none';
- $('#cartItems').innerHTML=l.length?l.map(([p,q])=>`<div class="row"><img src="${p.image_url}" alt=""><div class="n"><b>${esc(p.name)}</b><span class="sub">${q} × ${money(effective(p),p.cur)}${p.discount>0?` · -${p.discount}%`:''}</span></div><div class="q"><button data-dec="${p.id}">−</button><strong>${q}</strong><button data-inc="${p.id}" ${q>=p.quantity?'disabled':''}>+</button></div></div>`).join(''):'<p class="note">Tu carrito está vacío.</p>';
+ $('#cartItems').innerHTML=l.length?l.map(([p,q])=>`<div class="row"><img src="${p.image_url}" alt=""><div class="n"><b>${esc(p.name)}</b><span class="sub">${q} × ${money(effective(p),p.currency)}${p.discount>0?` · -${p.discount}%`:''}</span></div><div class="q"><button data-dec="${p.id}">−</button><strong>${q}</strong><button data-inc="${p.id}" ${q>=p.quantity?'disabled':''}>+</button></div></div>`).join(''):'<p class="note">Tu carrito está vacío.</p>';
  $('#total').textContent=money(tot,cur);
  const msg='¡Hola, La Ceiba!\n\nMe interesa esta ropa:\n'+l.map(([p,q])=>`• ${q} x ${p.name} – ${money(converted(p)*q,cur)}`).join('\n')+'\n\nTotal: '+money(tot,cur)+'\n¿Está disponible?';
  $('#waMom').href=wa(MOM,msg);$('#waMe').href=wa(ME,msg);['#waMom','#waMe'].forEach(x=>$(x).classList.toggle('hide',!l.length));
@@ -138,7 +138,7 @@ document.addEventListener('click',e=>{const t=e.target,id=t.closest('[data-add]'
  if(t.closest('[data-add]')){const p=P(id);if(p&&((cart[id]||0)<p.quantity)&&!p.sold){cart[id]=(cart[id]||0)+1;renderCart();renderGrid();toast('Añadido al carrito')}}
  if(t.closest('[data-inc]')){const p=P(id);if(p&&(cart[id]||0)<p.quantity){cart[id]++;renderCart();renderGrid()}}
  if(t.closest('[data-dec]')){cart[id]--;if(cart[id]<=0)delete cart[id];renderCart();renderGrid()}
- if(t.closest('[data-ask]')){const p=P(id);if(p)window.open(wa(MOM,`¡Hola, La Ceiba! Quisiera preguntar por: ${p.name} (${money(effective(p),p.cur)}).`),'_blank')}
+ if(t.closest('[data-ask]')){const p=P(id);if(p)window.open(wa(MOM,`¡Hola, La Ceiba! Quisiera preguntar por: ${p.name} (${money(effective(p),p.currency)}).`),'_blank')}
 });
 $('#q').oninput=renderGrid;$('#sort').onchange=renderGrid;$('#avail').onchange=renderGrid;
 // Actualización en tiempo real: la tienda cambia sin tener que volver a subir index.html.
