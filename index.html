@@ -143,8 +143,11 @@ function renderCart(){
 async function loadStore(){
  const [c,p,s]=await Promise.all([sb.from('categories').select('*').order('name'),sb.from('products').select('*').eq('published',true).order('created_at',{ascending:false}),sb.from('settings').select('*').eq('id',1).maybeSingle()]);
  if(c.error||p.error||s.error){console.error(c.error,p.error,s.error);toast('No se pudo conectar con la tienda');return}
- cats=c.data||[];products=p.data||[];rate=Number(s.data?.usd_to_cup||400);renderAll();
+ const d={cats:c.data||[],products:p.data||[],rate:Number(s.data?.usd_to_cup||400)};
+ applyStore(d);
+ try{const j=JSON.stringify(d);if(j.length<2e6)localStorage.setItem('lc_store',j)}catch(e){}
 }
+function applyStore(d){cats=d.cats||[];products=d.products||[];rate=Number(d.rate||400);renderAll()}
 function renderAll(){document.querySelectorAll('[data-cur]').forEach(b=>b.classList.toggle('on',b.dataset.cur===cur));renderCats();renderGrid();renderCart()}
 const open=id=>$(id).classList.add('open');
 document.addEventListener('click',e=>{const t=e.target,id=t.closest('[data-add]')?.dataset.add||t.closest('[data-inc]')?.dataset.inc||t.closest('[data-dec]')?.dataset.dec||t.closest('[data-ask]')?.dataset.ask||t.closest('[data-cat]')?.dataset.cat||t.closest('[data-cur]')?.dataset.cur;
@@ -161,6 +164,8 @@ document.addEventListener('click',e=>{const t=e.target,id=t.closest('[data-add]'
 $('#q').oninput=renderGrid;$('#sort').onchange=renderGrid;$('#avail').onchange=renderGrid;$('#delivery').onchange=()=>{delivery=$('#delivery').checked;localStorage.setItem('lc_delivery',delivery?'1':'0');renderCart()};
 // Actualización en tiempo real: la tienda cambia sin tener que volver a subir index.html.
 sb.channel('store-live').on('postgres_changes',{event:'*',schema:'public',table:'products'},loadStore).on('postgres_changes',{event:'*',schema:'public',table:'categories'},loadStore).on('postgres_changes',{event:'*',schema:'public',table:'settings'},loadStore).subscribe();
+// Pintado instantáneo con los datos de la última visita; luego se actualiza con los de Supabase.
+try{const d=JSON.parse(localStorage.getItem('lc_store')||'null');if(d&&d.products)applyStore(d)}catch(e){}
 loadStore();
 </script>
 <script>if('serviceWorker' in navigator)addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(()=>{}))</script>
